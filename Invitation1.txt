@@ -160,7 +160,7 @@
       <label class="option"><input type="radio" name="q1" value="مشاوره مدیریت ریسک">مشاوره مدیریت ریسک</label>
       <label class="option"><input type="radio" name="q1" value="مشاوره تأمین اجتماعی">مشاوره تأمین اجتماعی</label>
       <label class="option"><input type="radio" name="q1" value="مشاوره دعاوی حقوقی">مشاوره دعاوی حقوقی</label>
-      <label class="option"><input type="radio" name="q1" value="خرید بیمه نامه های اموال">خرید بیمه نامه‌های اموال</label>
+      <label class="option"><input type="radio" name="q1" value="خرید بیمه نامه های درمان و اموال">خرید بیمه نامه‌های درمان و اموال</label>
       <label class="option"><input type="radio" name="q1" value="دوره های آموزشی کسب و کار">دوره‌های آموزشی کسب‌وکار</label>
     </div>
 
