@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>بیزکیت</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #f6f9fc, #dbeafe);
+      direction: rtl;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .stage {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      z-index: 1;
+    }
+
+    .card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      animation: fadeIn 0.6s ease-in-out;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      position: relative;
+    }
+#page2 {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#page2.visible {
+  opacity: 1;
+}
+
+    .hidden {
+      display: none;
+    }
+
+    .curtain-container.hidden {
+  display: none;
+}
+
+
+    .curtain-panel {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background-color: #1e3a8a;
+      transition: transform 1s ease-in-out;
+    }
+
+    .curtain-left {
+      left: 0;
+      transform: translateX(0);
+    }
+
+    .curtain-right {
+      right: 0;
+      transform: translateX(0);
+    }
+
+    .curtain-container.open .curtain-left {
+      transform: translateX(-100%);
+    }
+
+    .curtain-container.open .curtain-right {
+      transform: translateX(100%);
+    }
+
+    .question {
+      margin-bottom: 30px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      margin: 12px 0;
+      font-size: 16px;
+    }
+
+    .option input {
+      margin-left: 10px;
+      transform: scale(1.2);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 24px;
+    }
+
+    button:hover {
+      background-color: #2563eb;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px 16px;
+      }
+
+      .option {
+        font-size: 15px;
+      }
+
+      button {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🎭 Curtain Animation -->
+<div class="curtain-container" id="curtain">
+  <div class="curtain-panel curtain-left"></div>
+  <div class="curtain-panel curtain-right"></div>
+</div>
+
+<div class="stage">
+  <!-- Page 1 -->
+  <div id="page1" class="card">
+    <h2>سلام 👋</h2>
+    <p>لطفاً به پرسش زیر پاسخ دهید:</p>
+
+    <div class="question">
+      <p><strong>کدام خدمت زیر را نمی‌توان در بیزکیت دریافت نمود؟</strong></p>
+      <label class="option"><input type="radio" name="q1" value="مشاوره مدیریت ریسک">مشاوره مدیریت ریسک</label>
+      <label class="option"><input type="radio" name="q1" value="مشاوره تأمین اجتماعی">مشاوره تأمین اجتماعی</label>
+      <label class="option"><input type="radio" name="q1" value="مشاوره دعاوی حقوقی">مشاوره دعاوی حقوقی</label>
+      <label class="option"><input type="radio" name="q1" value="خرید بیمه نامه های اموال">خرید بیمه نامه‌های اموال</label>
+      <label class="option"><input type="radio" name="q1" value="دوره های آموزشی کسب و کار">دوره‌های آموزشی کسب‌وکار</label>
+    </div>
+
+    <button onclick="goToPage2()">ادامه</button>
+    <div id="error1" class="error hidden">❌ پاسخ نادرست است. لطفاً دوباره تلاش کنید.</div>
+  </div>
+
+  <!-- Page 2 -->
+  <div id="page2" class="card hidden">
+    <h3>🎉 درود بر شما</h3>
+    <p>از شما دعوت می‌شود در همایش معرفی محصول بیزکیت حضور به‌هم رسانید.</p>
+    <p><strong>تاریخ:</strong> پنج‌شنبه ۲۵ اردیبهشت<br>
+      <strong>زمان:</strong> ساعت ۹ صبح<br>
+      <strong>مکان:</strong> 123 Innovation Avenue, Suite 500</p>
+  </div>
+</div>
+
+<script>
+  function goToPage2() {
+    const q1 = document.querySelector('input[name="q1"]:checked');
+    const errorBox = document.getElementById('error1');
+    const curtain = document.getElementById('curtain');
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+
+    errorBox.classList.add('hidden');
+
+    if (!q1) {
+      alert("لطفاً به پرسش پاسخ دهید");
+      return;
+    }
+
+    if (q1.value === "مشاوره دعاوی حقوقی") {
+      // Switch to page 2 (hidden behind curtain)
+      page1.classList.add('hidden');
+      page2.classList.remove('hidden');
+
+      // Then open curtain
+      curtain.classList.remove('hidden');
+      curtain.classList.remove('open');
+      void curtain.offsetWidth; // force reflow
+      curtain.classList.add('open');
+
+      // Make page2 fully visible after curtain opens
+      setTimeout(() => {
+        page2.classList.add('visible');
+      }, 600);
+
+      // Optionally hide curtain after reveal
+      setTimeout(() => {
+        curtain.classList.add('hidden');
+      }, 1200);
+    } else {
+      errorBox.classList.remove('hidden');
+    }
+  }
+</script>
+
+</body>
+</html>
